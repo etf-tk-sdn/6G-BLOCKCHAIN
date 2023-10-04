@@ -1,0 +1,27 @@
+#include "blockchain.h"
+MODULE_LICENSE("GPL");
+
+static int __init t3_module_init(void) {
+	struct coption *copt;
+	struct cdata *cdat; 
+	unsigned int packet_no[] = {0x45,0x96,0x68,0xc9,0xf2,0x08,0x00,0x45,0x00,0x00,0x3c,0xd0,0x8b,0x00,0x00,0x80,0x01,0x57,0x94,0xc0,0xa8,0xc8,0xa9,0xc0,0xa8,0xc8,0xa6,0x08,0x00,0x4c,0xb5,0x00,0x01,0x00,0xa6,0x61,0x62,0x63,0x64,0x65,0x66,0x67,0x68,0x69,0x6a,0x6b,0x6c,0x6d,0x6e,0x6f,0x70,0x71,0x72,0x73,0x74,0x75,0x76,0x77,0x61,0x62,0x63,0x64,0x65,0x66,0x67,0x68,0x69};
+	struct iphdr *iph = (struct iphdr *)packet_no;
+	copt = (struct coption *)kmalloc(sizeof(struct coption), GFP_KERNEL);
+	cdat = (struct cdata *)kmalloc(sizeof(struct cdata), GFP_KERNEL);
+	fill_cdata(cdat, iph);
+	init_hash(copt, cdat);
+	printk(KERN_INFO "Type:   %02x", copt->type);
+	printk(KERN_INFO "Len:    %02x", copt->len);
+	printk(KERN_INFO "Sqn:    %02x", copt->sqn);
+	printk(KERN_INFO "Unused: %02x %02x %02x %02x %02x", copt->unused[0], copt->unused[1], copt->unused[2], copt->unused[3], copt->unused[4]);
+	printk(KERN_INFO "Hash0:  %02x %02x %02x %02x", copt->hash0[0], copt->hash0[1], copt->hash0[2], copt->hash0[3]);
+	kfree(copt);
+	kfree(cdat);
+	return 0;
+}
+
+static void __exit t3_module_exit(void) {
+printk(KERN_INFO "Exit");
+}
+module_init(t3_module_init);
+module_exit(t3_module_exit);
