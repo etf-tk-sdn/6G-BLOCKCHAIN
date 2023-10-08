@@ -113,8 +113,15 @@ void init_hash(struct coption *opt, struct cdata *data) {
 }
 
 void update_hash(struct coption *opt, struct cdata *data, struct chash *lr) {
-	unsigned char hash0[4], hash1[4], hash2[4], hash3[4], hash4[4], hash5[4], hash6[4], hash7[4] = {0x00, 0x00, 0x00, 0x00};
-
+	unsigned char hash0[4], hash1[4], hash2[4], hash3[4], hash4[4], hash5[4], hash6[4], hash7[4];
+	memcpy(hash0, opt->hash0, 4);
+	memcpy(hash1, opt->hash1, 4);
+	memcpy(hash2, opt->hash2, 4);
+	memcpy(hash3, opt->hash3, 4);
+	memcpy(hash4, opt->hash4, 4);
+	memcpy(hash5, opt->hash5, 4);
+	memcpy(hash6, opt->hash6, 4);
+	memcpy(hash7, opt->hash7, 4); 
 	opt->sqn+=1;
         if (opt->sqn % 2 == 0) {
       		memcpy(lr->lhash, opt->hash0, 4);
@@ -159,7 +166,7 @@ void update_hash(struct coption *opt, struct cdata *data, struct chash *lr) {
 		  memcpy(opt->hash5, hash5, 4);
 		  memcpy(opt->hash6, hash6, 4);
 	          memcpy(opt->hash7, hash7, 4);
-	} else { 
+	} else {
 		calculate_hash(hash0, data, sizeof(struct cdata));
 		memcpy(opt->hash0, hash0, 4);
 	}

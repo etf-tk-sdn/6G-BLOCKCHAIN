@@ -109,7 +109,7 @@ static int __init test_module_init(void) {
 	memcpy(skb_put(skb, sizeof(packet)), packet, packet_size);
 	iph = ip_hdr(skb);
 
-	while(nr_hop < 5 ) {
+	while(nr_hop < 17) {
 	printk(KERN_INFO "HOP NR. %d", nr_hop);
 	print_packet(iph);
 	test_all(iph, skb);
