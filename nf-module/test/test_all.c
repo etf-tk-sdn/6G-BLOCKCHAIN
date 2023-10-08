@@ -115,21 +115,6 @@ static int __init test_module_init(void) {
 
 	print_packet(iph);
 
-     /*   printk(KERN_INFO "- - - - - - - - - - - - - - - -");
-	printk(KERN_INFO "IHL after add_coption: %d", iph->ihl);
-	printk(KERN_INFO "Type:   %02x", *((unsigned char*)iph+20));
-	printk(KERN_INFO "Len:    %02x",*((unsigned char*)iph+21));
-	printk(KERN_INFO "Sqn:    %02x",*((unsigned char*)iph+22));
-        printk(KERN_INFO "Unused: %02x %02x %02x %02x %02x", *((unsigned char*)iph+23), *((unsigned char*)iph+24), *((unsigned char*)iph+25), *((unsigned char*)iph+26), *((unsigned char*)iph+27));
-	printk(KERN_INFO "Hash0:  %02x %02x %02x %02x", *((unsigned char*)iph+28), *((unsigned char*)iph+29), *((unsigned char*)iph+30), *((unsigned char*)iph+31));
-	printk(KERN_INFO "Hash1:  %02x %02x %02x %02x", *((unsigned char*)iph+32), *((unsigned char*)iph+33), *((unsigned char*)iph+34), *((unsigned char*)iph+35));
-	printk(KERN_INFO "Hash2:  %02x %02x %02x %02x", *((unsigned char*)iph+36), *((unsigned char*)iph+37), *((unsigned char*)iph+38), *((unsigned char*)iph+39));
-	printk(KERN_INFO "Hash3:  %02x %02x %02x %02x", *((unsigned char*)iph+40), *((unsigned char*)iph+41), *((unsigned char*)iph+42), *((unsigned char*)iph+43));
-	printk(KERN_INFO "Hash4:  %02x %02x %02x %02x", *((unsigned char*)iph+44), *((unsigned char*)iph+45), *((unsigned char*)iph+46), *((unsigned char*)iph+47));
-	printk(KERN_INFO "Hash5:  %02x %02x %02x %02x", *((unsigned char*)iph+48), *((unsigned char*)iph+49), *((unsigned char*)iph+50), *((unsigned char*)iph+51));
-	printk(KERN_INFO "Hash6:  %02x %02x %02x %02x", *((unsigned char*)iph+52), *((unsigned char*)iph+53), *((unsigned char*)iph+54), *((unsigned char*)iph+55));
-	printk(KERN_INFO "Hash7:  %02x %02x %02x %02x", *((unsigned char*)iph+56), *((unsigned char*)iph+57), *((unsigned char*)iph+58), *((unsigned char*)iph+59));  */
-
 	kfree(skb);
 	return 0;
 }
