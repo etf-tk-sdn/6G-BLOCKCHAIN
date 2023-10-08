@@ -1,5 +1,5 @@
 #!/bin/sh
 
-sudo rmmod test1_uco.ko
+sudo rmmod test_all_hops.ko
 make
-sudo insmod test1_uco.ko
+sudo insmod test_all_hops.ko

@@ -60,6 +60,13 @@ void add_coption(struct sk_buff *skb, struct iphdr *iph, struct coption *copt){
 	*((unsigned char*)iph+22) = copt->sqn;
 	memcpy((unsigned char*)iph+23, copt->unused, 5);
 	memcpy((unsigned char*)iph+28, copt->hash0, 4);
+        memcpy((unsigned char*)iph+32, copt->hash1, 4);
+	memcpy((unsigned char*)iph+36, copt->hash2, 4);
+	memcpy((unsigned char*)iph+40, copt->hash3, 4);
+	memcpy((unsigned char*)iph+44, copt->hash4, 4);
+	memcpy((unsigned char*)iph+48, copt->hash5, 4);
+	memcpy((unsigned char*)iph+52, copt->hash6, 4);
+	memcpy((unsigned char*)iph+56, copt->hash7, 4);
 }
 
 void update_coption(struct iphdr *iph, struct coption *copt) {
@@ -96,10 +103,17 @@ void init_hash(struct coption *opt, struct cdata *data) {
 	memcpy(opt->unused, zeros, 5);
 	calculate_hash(hash0, data, sizeof(struct cdata));
 	memcpy(opt->hash0, hash0, 4);
+	memcpy(opt->hash1, zeros, 4);
+	memcpy(opt->hash2, zeros, 4);
+	memcpy(opt->hash3, zeros, 4);
+	memcpy(opt->hash4, zeros, 4);
+	memcpy(opt->hash5, zeros, 4);
+	memcpy(opt->hash6, zeros, 4);
+	memcpy(opt->hash7, zeros, 4);
 }
 
 void update_hash(struct coption *opt, struct cdata *data, struct chash *lr) {
-	unsigned char hash0[4], hash1[4], hash2[4], hash3[4], hash4[4], hash5[4], hash6[4], hash7[4];
+	unsigned char hash0[4], hash1[4], hash2[4], hash3[4], hash4[4], hash5[4], hash6[4], hash7[4] = {0x00, 0x00, 0x00, 0x00};
 
 	opt->sqn+=1;
         if (opt->sqn % 2 == 0) {
